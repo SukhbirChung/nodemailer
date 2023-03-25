@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 
 const configurations = {
@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport(configurations);
 
 app.post('/', (req, res) => {
     const { name, course, email, message } = req.body;
-
+    console.log(req.body)
     const mailOptions = {
         from: process.env.EMAIL,
         to: process.env.TO,
