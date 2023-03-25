@@ -42,6 +42,7 @@ Message: ${message}`
         }
     });
 
+    res.header("Access-Control-Allow-Origin", "*");
     res.send("success");
 });
 
