@@ -23,12 +23,12 @@ const configurations = {
 const transporter = nodemailer.createTransport(configurations);
 
 app.post('/', (req, res) => {
-    const { name, course, email, message } = req.body;
-    console.log(req.body)
+    const { comingFrom, name, email, message, subject, course } = req.body;
+
     const mailOptions = {
         from: process.env.EMAIL,
-        to: process.env.TO,
-        subject: `Form query received: ${course}`,
+        to: comingFrom === "paptido" ? process.env.TOP : process.env.TO,
+        subject: comingFrom === "paptido" ? subject : `Form query received: ${course}`,
         text: `Name: ${name}
 Email: ${email}
 Message: ${message}`
