@@ -27,8 +27,8 @@ app.post('/', (req, res) => {
 
     const mailOptions = {
         from: process.env.EMAIL,
-        to: comingFrom === "paptido" ? process.env.TOP : process.env.TO,
-        subject: comingFrom === "paptido" ? subject : `Form query received: ${course}`,
+        to: setDestination(comingFrom),
+        subject: !comingFrom ? `Form query received: ${course}` : subject,
         text: `Name: ${name}
 Email: ${email}
 Message: ${message}`
@@ -45,5 +45,15 @@ Message: ${message}`
     res.header("Access-Control-Allow-Origin", "*");
     res.send("success");
 });
+
+function setDestination(comingFrom) {
+    if (comingFrom === 'paptido') {
+        return process.env.TOP;
+    }
+    else if (comingFrom === 'portfolio') {
+        return process.env.TOPORTFOLIO;
+    }
+    return process.env.TO
+}
 
 app.listen(3000, () =>  console.log("Listening...") );
