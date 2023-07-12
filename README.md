@@ -1,1 +1,2 @@
-This is a nodemailer node.js app created to send emails when data is received from an HTML cotact form.
+# Nodemailer
+Node.js/Express application that efficiently handles incoming form data, including user inquiries from a contact form, and seamlessly sends corresponding emails to the appropriate email account.
